@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { checkDupUsernameEmail } = require('../middleware/verifySignup');
-const db = require('../models/db');
 const bcrypt = require('bcrypt');
+const db = require('../models/db');
 const User = db.users;
 
 router.post('/', checkDupUsernameEmail, async (req, res) => {
