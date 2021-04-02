@@ -15,3 +15,11 @@ export interface PasswordFieldProps {
     startAdornment?: ReactNode;
 
 };
+
+
+export interface CardInterface {
+    imagePath: string;
+    title: string;
+    altTitle: string;
+    caption: string;
+}
