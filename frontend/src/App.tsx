@@ -18,18 +18,14 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-import NewReleasesIcon from '@material-ui/icons/NewReleases';
-import BusinessIcon from '@material-ui/icons/Business';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import WcIcon from '@material-ui/icons/Wc';
-import SettingsIcon from '@material-ui/icons/Settings';
-import AnnouncementIcon from '@material-ui/icons/Announcement';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+
+import LoginPage from 'pages/LoginPage';
+import SignupPage from 'pages/SignUp';  
+import ContactUs from 'pages/ContactUs';
+
 const drawerWidth = 240;
 
 
@@ -94,7 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       padding: theme.spacing(3),
     },
-    whiteText:{
+    whiteText: {
       color: 'white'
     }
   }),
@@ -136,6 +132,15 @@ export default function MiniDrawer() {
             accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
         </>;
+
+      case 'signup':
+        return <SignupPage />;
+
+      case 'login':
+        return <LoginPage />;
+
+      case 'contact':
+        return <ContactUs />;
     }
   }
 
@@ -169,9 +174,9 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Button>
-            <Typography variant="h6" 
-            className={classes.whiteText}
-            onClick={e => { dispatch(setUserCurrentPage('homepage')) }} noWrap>
+            <Typography variant="h6"
+              className={classes.whiteText}
+              onClick={e => { dispatch(setUserCurrentPage('homepage')) }} noWrap>
 
               Prostate Cancer DB
           </Typography>
@@ -201,6 +206,11 @@ export default function MiniDrawer() {
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('login')) }}>
             <ListItemIcon> <LockOpenIcon /></ListItemIcon>
             <ListItemText primary="Login"></ListItemText>
+          </ListItem>
+
+          <ListItem button onClick={e => { dispatch(setUserCurrentPage('signup')) }}>
+            <ListItemIcon> <PersonAddIcon /></ListItemIcon>
+            <ListItemText primary="Sign Up"></ListItemText>
           </ListItem>
 
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('contact')) }}>
