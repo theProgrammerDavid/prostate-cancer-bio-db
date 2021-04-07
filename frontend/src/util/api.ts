@@ -15,9 +15,12 @@ Axios.interceptors.request.use((req) => {
 Axios.interceptors.response.use(
     res => res,
     err => {
-        if (err.response.status === 403) {
-
-
+        if (err.response.status === 500) {
+            // console.log('error');
+            // console.log(err.response.data.msg);
+            throw new Error(err.response.data.msg)
+        }
+        else if (err.response.status === 403) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

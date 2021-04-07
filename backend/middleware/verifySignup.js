@@ -5,15 +5,13 @@ exports.checkDupUsernameEmail = async (req, res, next) => {
     try {
         const ans = await User.findOne({
             where: {
-                username: req.body.username
+                email: req.body.email
             }
         });
 
         if (ans) {
-            res.status(404).json({ err: true, msg: 'username or email already exists' });
-            return;
+            return res.status(500).json({ err: true, msg: 'username or email already exists' });
         }
-
         const ans1 = await User.findOne({
             where: {
                 email: req.body.email
@@ -28,6 +26,7 @@ exports.checkDupUsernameEmail = async (req, res, next) => {
         next();
     }
     catch (e) {
+        console.log(e)
         res.status(500).json({ err: true, msg: 'invalid request' });
 
     }

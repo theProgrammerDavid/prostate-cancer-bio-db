@@ -6,18 +6,23 @@ const User = db.users;
 
 router.post('/', checkDupUsernameEmail, async (req, res) => {
     try {
-        const username = req.body.username
+        console.log(req.body);
+
+        const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
 
+        console.log(name, email, password)
         const resp = await User.create({
-            username: req.body.username,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8)
+            name: name,
+            email: email,
+            password: bcrypt.hashSync(password, 8)
         })
+
         res.status(200).json({ msg: 'successfully signed up' });
     }
     catch (e) {
+        console.log(e);
         res.status(500).json({ err: true, msg: 'invalid request' });
 
     }
