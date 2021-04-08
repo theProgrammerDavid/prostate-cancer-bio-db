@@ -3,29 +3,29 @@ import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserCurrentPage, selectPage } from './features/counter/counterSlice'
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { setUserCurrentPage, selectPage, getUser } from './features/counter/counterSlice'
+import {
+  Avatar, Drawer, AppBar, Toolbar, List, CssBaseline, Typography,
+  Divider, IconButton, ListItem, ListItemIcon, ListItemText
+} from '@material-ui/core'
+
+
+import {
+  Menu as MenuIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+  ContactMail as ContactMailIcon,
+  LockOpen as LockOpenIcon,
+  PersonAdd as PersonAddIcon,
+  Search as SearchIcon,
+  Assessment as AssesmentIcon
+} from '@material-ui/icons'
 
 import LoginPage from 'pages/LoginPage';
 import SignupPage from 'pages/SignUp';
 import ContactUs from 'pages/ContactUs';
 import HomePageCarousel from 'components/HomePageCarousel';
+import RawQuery from 'pages/RawQuery';
 
 const drawerWidth = 240;
 
@@ -99,10 +99,31 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function MiniDrawer() {
   const dispatch = useDispatch();
+  const userLogin = useSelector(getUser);
   const getPage = useSelector(selectPage);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const drawLoginContent = () => {
+    if (userLogin.length <= 0) {
+      return <></>;
+    }
+
+    return (
+      <>
+        <ListItem button onClick={e => { dispatch(setUserCurrentPage('rawQuery')) }}>
+          <ListItemIcon> <SearchIcon /></ListItemIcon>
+          <ListItemText primary="RAW query"></ListItemText>
+        </ListItem>
+
+        <ListItem button onClick={e => { dispatch(setUserCurrentPage('statistics')) }}>
+          <ListItemIcon> <AssesmentIcon /></ListItemIcon>
+          <ListItemText primary="Statistics"></ListItemText>
+        </ListItem>
+      </>
+    );
+  }
 
   const drawContent = () => {
     switch (getPage) {
@@ -117,29 +138,7 @@ export default function MiniDrawer() {
             navButtonsAlwaysInvisible={false}
             cycleNavigation={true}
           />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-            facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-            gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-            donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-            adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-            Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-            imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-            arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-        </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-            vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-            hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-            tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-            nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+          
         </>;
 
       case 'signup':
@@ -150,6 +149,9 @@ export default function MiniDrawer() {
 
       case 'contact':
         return <ContactUs />;
+      
+      case 'rawQuery':
+        return <RawQuery />
     }
   }
 
@@ -229,7 +231,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-
+          {drawLoginContent()}
         </List>
       </Drawer>
       <main className={classes.content}>

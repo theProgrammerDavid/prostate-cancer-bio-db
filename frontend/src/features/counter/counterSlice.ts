@@ -19,7 +19,7 @@ export const counterSlice = createSlice({
     loginUser: (state, action: PayloadAction<String>) => {
       state.email = action.payload;
     }
-     
+
   },
 });
 
@@ -30,6 +30,6 @@ export const { setUserCurrentPage, loginUser } = counterSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCount = (state: RootState) => state.counter.value;
-export const selectPage = (state:RootState) =>state.counter.currentPage;
-
+export const selectPage = (state: RootState) => state.counter.currentPage;
+export const getUser = (state: RootState) => state.counter.email;
 export default counterSlice.reducer;
