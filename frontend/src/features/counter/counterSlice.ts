@@ -23,7 +23,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { setUserCurrentPage } = counterSlice.actions;
+export const { setUserCurrentPage, loginUser } = counterSlice.actions;
 
 
 // The function below is called a selector and allows us to select a value from

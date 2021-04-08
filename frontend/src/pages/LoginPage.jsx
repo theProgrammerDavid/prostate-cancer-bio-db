@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, TextField, Button } from '@material-ui/core';
 import Axios from 'util/api';
+import { setUserCurrentPage, loginUser } from 'features/counter/counterSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2'
+
 
 const useStyles = makeStyles((theme => ({
     root: {
@@ -18,6 +22,7 @@ const useStyles = makeStyles((theme => ({
 })));
 
 function LoginPage() {
+    const dispatch = useDispatch();
     const classes = useStyles();
 
     const [email, setEmail] = useState('');
@@ -28,8 +33,23 @@ function LoginPage() {
             email: email,
             password: pass
         }
-        const response = await Axios.post('/login', payload);
-        console.log(response);
+       try{
+           const response = await Axios.post('/login', payload);
+           console.log(response);
+
+           if (response.status === 200) {
+               dispatch(loginUser(email));
+               dispatch(setUserCurrentPage('dash'));
+           }
+       }
+       catch(e){
+           Swal.fire({
+               icon: 'error',
+               title: 'Oops...',
+               text: `${e}`,
+
+           })
+       }
     }
     return (
         <div className={classes.root} align="center">

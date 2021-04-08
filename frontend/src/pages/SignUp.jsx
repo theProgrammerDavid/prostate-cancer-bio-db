@@ -94,7 +94,7 @@ function SignUp() {
                 color="primary"
                 onClick={e => { if (!check()) signup() }}
             >
-                Login
+                Sign Up
             </Button>
         </div>
     )

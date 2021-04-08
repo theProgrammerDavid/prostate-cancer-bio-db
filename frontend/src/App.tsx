@@ -23,8 +23,9 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import LoginPage from 'pages/LoginPage';
-import SignupPage from 'pages/SignUp';  
+import SignupPage from 'pages/SignUp';
 import ContactUs from 'pages/ContactUs';
+import HomePageCarousel from 'components/HomePageCarousel';
 
 const drawerWidth = 240;
 
@@ -108,6 +109,14 @@ export default function MiniDrawer() {
 
       case 'homepage':
         return <>
+          <HomePageCarousel animation="fade"
+            autoPlay={true}
+            indicators={true}
+            timeout={500}
+            navButtonsAlwaysVisible={true}
+            navButtonsAlwaysInvisible={false}
+            cycleNavigation={true}
+          />
           <Typography paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum

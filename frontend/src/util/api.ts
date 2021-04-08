@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 
 
 const Axios = axios.create({
-    baseURL: process.env.PUBLIC_BASE_URL || 'http://localhost:4000',
+    baseURL: process.env.BASE_URL || 'http://localhost:4000',
 
 });
 Axios.interceptors.request.use((req) => {
