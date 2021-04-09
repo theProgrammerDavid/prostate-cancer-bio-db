@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const signupRouter = require('./routers/signup.router');
 const loginRouter = require('./routers/login.router');
-
+const setupRouter = require('./setup/setup.router');
 const db = require('./models/db');
 
 const port = process.env.PORT || 3000;
@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use('/static', express.static(path.join(__dirname, 'static')))
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
+app.use('/setup', setupRouter);
 
 db.sequelize.sync({}).then(() => {
     console.log("conncted to db.");
