@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const db = require('../models/db');
-const data = require('/home/david/test.json');
+const data = require('./sample.data.json');
 
 const { CrossReferences,
     TargetComponents,
