@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
                 email: email,
             }
         })
-        
+
         if (!resp) {
             res.status(500).json({ err: true, msg: 'user does not exist.' });
             return;
@@ -28,8 +28,9 @@ router.post('/', async (req, res) => {
 
         if (isValid) {
             res.json({ token: await generateToken(email), expiry: process.env.ACCESS_TOKEN_LIFE });
-        } else { 
-            res.status(500).json({ err: true, msg: 'user does not exist' }); }
+        } else {
+            res.status(500).json({ err: true, msg: 'user does not exist' });
+        }
 
     }
     catch (e) {
