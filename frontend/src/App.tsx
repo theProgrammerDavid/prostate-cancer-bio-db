@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUserCurrentPage, selectPage, getUser } from './features/counter/counterSlice'
 import {
   Avatar, Drawer, AppBar, Toolbar, List, CssBaseline, Typography,
-  Divider, IconButton, ListItem, ListItemIcon, ListItemText
+  Divider, IconButton, ListItem, ListItemIcon, ListItemText, Tooltip
 } from '@material-ui/core'
 
 
@@ -113,12 +113,16 @@ export default function MiniDrawer() {
     return (
       <>
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('rawQuery')) }}>
+          <Tooltip title="RAW SQL query">
           <ListItemIcon> <SearchIcon /></ListItemIcon>
-          <ListItemText primary="RAW query"></ListItemText>
+          </Tooltip>
+          <ListItemText primary="RAW SQL query"></ListItemText>
         </ListItem>
 
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('statistics')) }}>
+          <Tooltip title="Statistics">
           <ListItemIcon> <AssesmentIcon /></ListItemIcon>
+          </Tooltip>
           <ListItemText primary="Statistics"></ListItemText>
         </ListItem>
       </>
@@ -215,17 +219,23 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('login')) }}>
+            <Tooltip title="Login">
             <ListItemIcon> <LockOpenIcon /></ListItemIcon>
+            </Tooltip>
             <ListItemText primary="Login"></ListItemText>
           </ListItem>
 
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('signup')) }}>
+            <Tooltip title="Sign Up">
             <ListItemIcon> <PersonAddIcon /></ListItemIcon>
+            </Tooltip>
             <ListItemText primary="Sign Up"></ListItemText>
           </ListItem>
 
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('contact')) }}>
+            <Tooltip title="Contact Us">
             <ListItemIcon> <ContactMailIcon /></ListItemIcon>
+            </Tooltip>
             <ListItemText primary="Contact Us"></ListItemText>
           </ListItem>
         </List>
