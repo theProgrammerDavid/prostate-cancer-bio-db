@@ -8,7 +8,22 @@ const { CrossReferences,
     TargetComponentXref,
     Target
 } = db;
+router.get('/test', async (req, res) => {
 
+    // const ans = await db.sequelize.query('SELECT * FROM users WHERE id = :id', {
+    //     replacements: { id: 8 },
+    //     type: db.sequelize.QueryTypes.SELECT
+    // });
+    try {
+        const ans = await db.sequelize.query('SELECT * FROM users WHERE id = 8');
+        res.json({ success: true, msg: ans });
+        console.log(ans);
+    }
+    catch (er) {
+        return res.json({ err: true, err: er });
+    }
+
+})
 router.get('/', async (req, res) => {
     try {
 
