@@ -18,15 +18,25 @@ import {
   LockOpen as LockOpenIcon,
   PersonAdd as PersonAddIcon,
   Search as SearchIcon,
-  Assessment as AssesmentIcon
+  Assessment as AssesmentIcon,
+  Fingerprint as FingerprintIcon,
+  Publish as PublishIcon,
+  Computer as ComputerIcon,
+  Home as HomeIcon
 } from '@material-ui/icons'
 
 import LoginPage from 'pages/LoginPage';
 import SignupPage from 'pages/SignUp';
 import ContactUs from 'pages/ContactUs';
-import HomePageCarousel from 'components/HomePageCarousel';
+import Dash from 'pages/Dash';
 import RawQuery from 'pages/RawQuery';
+import BioCalc from 'pages/BioCalc';
+import SubmitProt from 'pages/SubmitProt';
+import ProtSearch from 'pages/ProteinSearch';
+import BioStats from 'pages/BioStats';
 
+import HomePageCarousel from 'components/HomePageCarousel';
+import ImageCard from 'components/ImageCard';
 const drawerWidth = 240;
 
 
@@ -112,16 +122,45 @@ export default function MiniDrawer() {
 
     return (
       <>
+
+        <ListItem button onClick={e => { dispatch(setUserCurrentPage('dash')) }}>
+          <Tooltip title="Dashboard">
+            <ListItemIcon> <HomeIcon /></ListItemIcon>
+          </Tooltip>
+          <ListItemText primary="Dashboard"></ListItemText>
+        </ListItem>
+
+        <ListItem button onClick={e => { dispatch(setUserCurrentPage('bioCalc')) }}>
+          <Tooltip title="Bioactivity Calculator">
+            <ListItemIcon> <FingerprintIcon /></ListItemIcon>
+          </Tooltip>
+          <ListItemText primary="Bioactivity Calculator"></ListItemText>
+        </ListItem>
+
+        <ListItem button onClick={e => { dispatch(setUserCurrentPage('submitProt')) }}>
+          <Tooltip title="Submit protein">
+            <ListItemIcon> <PublishIcon /></ListItemIcon>
+          </Tooltip>
+          <ListItemText primary="Submit protein"></ListItemText>
+        </ListItem>
+
+        <ListItem button onClick={e => { dispatch(setUserCurrentPage('search')) }}>
+          <Tooltip title="Protein Search">
+            <ListItemIcon> <SearchIcon /></ListItemIcon>
+          </Tooltip>
+          <ListItemText primary="Protein Search"></ListItemText>
+        </ListItem>
+
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('rawQuery')) }}>
           <Tooltip title="RAW SQL query">
-          <ListItemIcon> <SearchIcon /></ListItemIcon>
+            <ListItemIcon> <ComputerIcon /></ListItemIcon>
           </Tooltip>
           <ListItemText primary="RAW SQL query"></ListItemText>
         </ListItem>
 
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('statistics')) }}>
           <Tooltip title="Statistics">
-          <ListItemIcon> <AssesmentIcon /></ListItemIcon>
+            <ListItemIcon> <AssesmentIcon /></ListItemIcon>
           </Tooltip>
           <ListItemText primary="Statistics"></ListItemText>
         </ListItem>
@@ -142,20 +181,36 @@ export default function MiniDrawer() {
             navButtonsAlwaysInvisible={false}
             cycleNavigation={true}
           />
-          
+
         </>;
+
+      case 'search':
+        return <ProtSearch />;
 
       case 'signup':
         return <SignupPage />;
+
+      case 'bioCalc':
+        return <BioCalc />;
 
       case 'login':
         return <LoginPage />;
 
       case 'contact':
         return <ContactUs />;
-      
+
+      case 'submitProt':
+        return <SubmitProt />
+
       case 'rawQuery':
         return <RawQuery />
+
+      case 'dash':
+        return <Dash />
+
+      case 'statistics':
+        return <BioStats />
+
     }
   }
 
@@ -220,21 +275,21 @@ export default function MiniDrawer() {
         <List>
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('login')) }}>
             <Tooltip title="Login">
-            <ListItemIcon> <LockOpenIcon /></ListItemIcon>
+              <ListItemIcon> <LockOpenIcon /></ListItemIcon>
             </Tooltip>
             <ListItemText primary="Login"></ListItemText>
           </ListItem>
 
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('signup')) }}>
             <Tooltip title="Sign Up">
-            <ListItemIcon> <PersonAddIcon /></ListItemIcon>
+              <ListItemIcon> <PersonAddIcon /></ListItemIcon>
             </Tooltip>
             <ListItemText primary="Sign Up"></ListItemText>
           </ListItem>
 
           <ListItem button onClick={e => { dispatch(setUserCurrentPage('contact')) }}>
             <Tooltip title="Contact Us">
-            <ListItemIcon> <ContactMailIcon /></ListItemIcon>
+              <ListItemIcon> <ContactMailIcon /></ListItemIcon>
             </Tooltip>
             <ListItemText primary="Contact Us"></ListItemText>
           </ListItem>
