@@ -117,11 +117,11 @@ const items = [
         Items: [
             {
                 Name: "Purple Cells Cancer",
-                Image: `${process.env.BASE_URL || 'http://localhost:4000'}/static/img/cancer1.jpg`
+                Image: `${process.env.REACT_APP_BASE_URL || 'http://localhost:4000'}/static/img/cancer1.jpg`
             },
             {
                 Name: "National Cancer Institute",
-                Image: `${process.env.BASE_URL || 'http://localhost:4000'}/static/img/nci.jpg`
+                Image: `${process.env.REACT_APP_BASE_URL || 'http://localhost:4000'}/static/img/nci.jpg`
             }
         ]
     },
@@ -132,11 +132,11 @@ const items = [
         Items: [
             {
                 Name: "Data Redundancy",
-                Image: `${process.env.BASE_URL || 'http://localhost:4000'}/static/img/db1.jpg`
+                Image: `${process.env.REACT_APP_BASE_URL || 'http://localhost:4000'}/static/img/db1.jpg`
             },
             {
                 Name: "Fast and Responsive",
-                Image: `${process.env.BASE_URL || 'http://localhost:4000'}/static/img/db2.jpg`
+                Image: `${process.env.REACT_APP_BASE_URL || 'http://localhost:4000'}/static/img/db2.jpg`
             }
         ]
     },
@@ -147,11 +147,11 @@ const items = [
         Items: [
             {
                 Name: "Protein Structures",
-                Image: `${process.env.BASE_URL || 'http://localhost:4000'}/static/img/pro1.jpg`
+                Image: `${process.env.REACT_APP_BASE_URL || 'http://localhost:4000'}/static/img/pro1.jpg`
             },
             {
                 Name: "Analysis Data",
-                Image: `${process.env.BASE_URL || 'http://localhost:4000'}/static/img/pro2.jpg`
+                Image: `${process.env.REACT_APP_BASE_URL || 'http://localhost:4000'}/static/img/pro2.jpg`
             }
         ]
     }
