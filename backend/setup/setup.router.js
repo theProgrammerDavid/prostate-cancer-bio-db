@@ -28,7 +28,6 @@ router.get('/', async (req, res) => {
     try {
 
         // console.log(data.targets.length)
-        console.time('test');
         data.targets.forEach(target => {
 
 
