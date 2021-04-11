@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Typography, TextField, Grid, Paper,
+    Typography, TextField, Grid, Paper, Button,
     Accordion, AccordionSummary, TextareaAutosize,
     AccordionDetails
 } from '@material-ui/core'
@@ -84,6 +84,7 @@ function RawQuery() {
 
     return (
         <div className={classes.root}>
+            <Typography variant="h2">RAW Query</Typography>
             <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Accordion TransitionProps={{ unmountOnExit: true }} >
@@ -113,9 +114,7 @@ function RawQuery() {
                         </AccordionDetails>
                     </Accordion>
                 </Grid>
-            </Grid>
 
-            <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Accordion TransitionProps={{ unmountOnExit: true }}>
                         <AccordionSummary
@@ -146,20 +145,36 @@ function RawQuery() {
                     </Accordion>
                 </Grid>
 
-                <Grid item xs={4}>
-                    <Typography variant="h2">RAW Query</Typography>
+                <Grid item xs={6}>
+                    <Accordion TransitionProps={{ unmountOnExit: true }}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography className={classes.heading}>TARGET_SYNONYMs</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Table data={synonyms} />
+                        </AccordionDetails>
+                    </Accordion>
 
                 </Grid>
 
-                <Grid item xs={8}>
+                <Grid item xs={6}>
+                    <Typography variant="h4">Query editor</Typography>
+
                     <TextareaAutosize
                         rowsMin={10}
                         className={classes.query}
                         aria-label="maximum height"
                         placeholder="Maximum 4 rows"
-                        defaultValue='SELECT organism, type  FROM `TARGET_SYNONYMs` as syn  JOIN `TARGETs` as T WHERE T.PID="CHEMBL50
-                                    64" AND syn.PID="CHEMBL5064" LIMIT 10;'
+                        defaultValue='SELECT organism, type  FROM `TARGET_SYNONYMs` as syn  JOIN `TARGETs` as T WHERE T.PID="CHEMBL5064" AND syn.PID="CHEMBL5064" LIMIT 10;'
                     />
+                    <br/>
+                    <Button variant="contained" color="primary">
+                        Submit
+                    </Button>
                 </Grid>
             </Grid>
 
