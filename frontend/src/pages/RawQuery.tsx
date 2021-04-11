@@ -2,14 +2,15 @@ import React from 'react'
 import {
     Typography, TextField, Grid, Paper, Button,
     Accordion, AccordionSummary, TextareaAutosize,
-    AccordionDetails
+    AccordionDetails, Divider, Tooltip, ListItemIcon
 } from '@material-ui/core'
 
 import { makeStyles } from '@material-ui/core/styles';
 
 
 import {
-    ExpandMore as ExpandMoreIcon
+    ExpandMore as ExpandMoreIcon,
+    HelpOutline as HelpOutlineIcon
 } from '@material-ui/icons'
 
 import Table from 'components/Table';
@@ -84,7 +85,12 @@ function RawQuery() {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h2">RAW Query</Typography>
+            <Typography variant="h2">RAW SQL Query</Typography>
+            <Tooltip placement="right" title="SQL Queries are READ only. Queries that contain MODIFY / UPDATE / DELETE / DROP / any query to modify the state of the table are not allowed.">
+                <ListItemIcon> <HelpOutlineIcon /></ListItemIcon>
+            </Tooltip>
+            <Divider/>
+            <br/>
             <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Accordion TransitionProps={{ unmountOnExit: true }} >

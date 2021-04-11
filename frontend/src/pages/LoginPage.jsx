@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, TextField, Button } from '@material-ui/core';
-import Axios from 'util/api';
+import Axios, { setHeader } from 'util/api';
 import { setUserCurrentPage, loginUser } from 'features/counter/counterSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2'
@@ -33,23 +33,25 @@ function LoginPage() {
             email: email,
             password: pass
         }
-       try{
-           const response = await Axios.post('/login', payload);
-           console.log(response);
+        try {
+            const response = await Axios.post('/login', payload);
+            console.log(response);
 
-           if (response.status === 200) {
-               dispatch(loginUser(email));
-               dispatch(setUserCurrentPage('dash'));
-           }
-       }
-       catch(e){
-           Swal.fire({
-               icon: 'error',
-               title: 'Oops...',
-               text: `${e}`,
+            if (response.status === 200) {
+                dispatch(loginUser(email));
+                dispatch(setUserCurrentPage('dash'));
+                localStorage.setItem("accessToken", response.data.token);
+                setHeader(response.data.token);
+            }
+        }
+        catch (e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${e}`,
 
-           })
-       }
+            })
+        }
     }
     return (
         <div className={classes.root} align="center">
