@@ -5,6 +5,7 @@ import Axios, { setHeader } from 'util/api';
 import { setUserCurrentPage, loginUser } from 'features/counter/counterSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2'
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 const useStyles = makeStyles((theme => ({
@@ -73,7 +74,12 @@ function LoginPage() {
 
             />
             <br></br><br></br>
-
+            <ReCAPTCHA
+                sitekey="6LePfqgaAAAAALi9_nnz6kut7mJGLvC4inV2KoEC"
+                onChange={e=>{
+                    
+                }}
+            />,
             <br></br>
             <Button
                 variant="contained"
