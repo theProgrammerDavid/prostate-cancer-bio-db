@@ -75,7 +75,7 @@ function LoginPage() {
             />
             <br></br><br></br>
             <ReCAPTCHA
-                sitekey="6LePfqgaAAAAALi9_nnz6kut7mJGLvC4inV2KoEC"
+                sitekey="6Lf82qwaAAAAAO2HOL7eX_2WFitZbYjwKDlpc0vF"
                 onChange={e=>{
                     
                 }}

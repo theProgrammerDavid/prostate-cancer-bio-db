@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+// import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Typography from '@material-ui/core/Typography';
 import type { CardInterface } from '../types';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         media: {
             height: 400,
+            width: 'auto',
+            objectFit: 'cover'
         },
         paper: {
             // padding: theme.spacing(3),
