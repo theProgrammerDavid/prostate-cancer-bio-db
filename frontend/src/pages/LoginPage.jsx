@@ -1,95 +1,89 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, TextField, Button } from '@material-ui/core';
-import Axios, { setHeader } from 'util/api';
-import { setUserCurrentPage, loginUser } from 'features/counter/counterSlice'
-import { useSelector, useDispatch } from 'react-redux';
-import Swal from 'sweetalert2'
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, TextField, Button } from "@material-ui/core";
+import Axios, { setHeader } from "util/api";
+import { setUserCurrentPage, loginUser } from "features/counter/counterSlice";
+import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import ReCAPTCHA from "react-google-recaptcha";
 
-
-const useStyles = makeStyles((theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
-        '& .MuiTextField-root': {
+        "& .MuiTextField-root": {
             margin: theme.spacing(1),
-            width: '50ch',
-
+            width: "50ch",
         },
     },
     whiteText: {
-        'text-decoration': 'none',
-        color: 'white'
-    }
-})));
+        "text-decoration": "none",
+        color: "white",
+    },
+}));
 
 function LoginPage() {
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
+    const [score, setScore] = useState("");
     const login = async () => {
         const payload = {
             email: email,
-            password: pass
-        }
+            password: pass,
+            captchaScore: score,
+        };
         try {
-            const response = await Axios.post('/login', payload);
+            const response = await Axios.post("/login", payload);
             console.log(response);
 
             if (response.status === 200) {
                 dispatch(loginUser(email));
-                dispatch(setUserCurrentPage('dash'));
+                dispatch(setUserCurrentPage("dash"));
                 localStorage.setItem("accessToken", response.data.token);
                 setHeader(response.data.token);
             }
-        }
-        catch (e) {
+        } catch (e) {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
+                icon: "error",
+                title: "Oops...",
                 text: `${e}`,
-
-            })
+            });
         }
-    }
+    };
     return (
         <div className={classes.root} align="center">
             <Typography variant="h2">Login</Typography>
-
-            <TextField required
+            <TextField
+                required
                 id="standard-basic1"
                 label="email"
                 type="email"
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
             />
-            <br></br><br></br>
+            <br></br>
+            <br></br>
             <TextField
                 required
                 type="password"
                 id="standard-basic2"
                 label="password"
-                onChange={e => setPass(e.target.value)}
-
+                onChange={(e) => setPass(e.target.value)}
             />
-            <br></br><br></br>
-            <ReCAPTCHA
-                sitekey="6Lf82qwaAAAAAO2HOL7eX_2WFitZbYjwKDlpc0vF"
-                onChange={e=>{
-                    
-                }}
-            />,
             <br></br>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={e => login()}
-            >
+            <br></br>
+            <ReCAPTCHA
+                sitekey="6Lfp-_UaAAAAAGkBKhJZh21pjf6RWAkxaOLHVxS7"
+                onChange={(e) => {
+                    setScore(e);
+                }}
+            />
+      ,<br></br>
+            <Button variant="contained" color="primary" onClick={(e) => login()}>
                 Login
-            </Button>
+      </Button>
         </div>
-    )
+    );
 }
 
-export default LoginPage
+export default LoginPage;
