@@ -4,6 +4,7 @@ const app = express()
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 const signupRouter = require('./routers/signup.router');
 const loginRouter = require('./routers/login.router');
@@ -25,8 +26,13 @@ app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/setup', setupRouter);
 
-db.sequelize.sync({}).then(() => {
+db.sequelize.sync({}).then(async () => {
     console.log("conncted to db.");
+    // const resp = await db.users.create({
+    //     name: process.env.ADMIN_USERNAME,
+    //     email: process.env.ADMIN_USERNAME,
+    //     password: bcrypt.hashSync(process.env.ADMIN_PASS, 8)
+    // })
 });
 app.listen(port, () => {
     console.log(`App listening at port ${port}`);
