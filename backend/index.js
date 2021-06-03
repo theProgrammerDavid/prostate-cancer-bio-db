@@ -25,8 +25,9 @@ app.get('/', (req, res) => {
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/setup', setupRouter);
-
-db.sequelize.sync({}).then(async () => {
+let force = process.env.DEBUG ? true : false;
+console.log(force)
+db.sequelize.sync({ force: force }).then(async () => {
     console.log("conncted to db.");
     // const resp = await db.users.create({
     //     name: process.env.ADMIN_USERNAME,

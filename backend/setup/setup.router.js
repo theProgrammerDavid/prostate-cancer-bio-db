@@ -2,13 +2,16 @@ const router = require('express').Router();
 const db = require('../models/db');
 const data = require('./sample.data.json');
 const gd = require('./genedrug.json');
+const geneList = require('./pretty.json');
+
 
 const { CrossReferences,
     TargetComponents,
     Interaction,
     TargetSynonyms,
     TargetComponentXref,
-    Target
+    Target,
+    Gene
 } = db;
 router.get('/test', async (req, res) => {
 
@@ -26,9 +29,50 @@ router.get('/test', async (req, res) => {
     }
 
 })
+
+router.get('/genes', (req, res) => {
+    try {
+        geneList.forEach(gene => {
+            let count = 0;
+            let uids = gene.result.uids;
+            for (let i=0;i<uids.length;i++) {
+                let uid = uids[i];
+                //console.log(typeof uid)
+                if (gene.result[uid] != undefined)
+                {
+                    count++;
+                    Gene.create({
+                        uid: uid,
+                        name: gene.result[uid].name,
+                        description: gene.result[uid].description,
+                        status: gene.result[uid].status,
+                        currentId: gene.result[uid].currentid,
+                        chromosome: gene.result[uid].chromosome,
+                        geneticsource: gene.result[uid].geneticsource,
+                        maplocation: gene.result[uid].maplocation,
+                        otheraliases: gene.result[uid].otheraliases,
+                        otherdesignations: gene.result[uid].otherdesignations,
+                        nomenclaturesymbol: gene.result[uid].nomenclaturesymbol,
+                        nomenclaturename: gene.result[uid].nomenclaturename,
+                        summary: gene.result[uid].summary
+                    });
+                }
+            }
+            console.log(count);
+            //  console.log(gene.result.uids.length)
+        });
+        res.send('ok')
+    }
+    catch (e) {
+        console.log(e)
+        res.send(e);
+    }
+});
+
 router.get('/', async (req, res) => {
     try {
-        gd.forEach(g=>{
+
+        gd.forEach(g => {
             Interaction.create({
                 // yes i know that they're reversed
                 gene: g.Drug,

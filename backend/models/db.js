@@ -22,13 +22,16 @@ db.sequelize = sequelize;
 db.users = require('./user.model')(sequelize, Sequelize);
 
 const { target, target_component_xref, target_synonyms, cross_references, target_components } = require('./protein.model');
+const interaction = require('./interactions.model');
+const gene = require('./gene.model');
 
 db.Target = target(sequelize, Sequelize);
 db.TargetComponentXref = target_component_xref(sequelize, Sequelize);
 db.TargetSynonyms = target_synonyms(sequelize, Sequelize);
 db.CrossReferences = cross_references(sequelize, Sequelize);
 db.TargetComponents = target_components(sequelize, Sequelize);
-
+db.Interaction = interaction(sequelize, Sequelize);
+db.Gene = gene(sequelize, Sequelize);
 // db.target_synonyms.belongsTo(target, {foreignKey: 'synonym'})
 
 module.exports = db;
