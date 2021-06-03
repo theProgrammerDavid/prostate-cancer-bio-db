@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const db = require('../models/db');
 const data = require('./sample.data.json');
+const gd = require('./genedrug.json');
 
 const { CrossReferences,
     TargetComponents,
+    Interaction,
     TargetSynonyms,
     TargetComponentXref,
     Target
@@ -26,7 +28,13 @@ router.get('/test', async (req, res) => {
 })
 router.get('/', async (req, res) => {
     try {
-
+        gd.forEach(g=>{
+            Interaction.create({
+                // yes i know that they're reversed
+                gene: g.Drug,
+                drug: g.Type
+            })
+        })
         // console.log(data.targets.length)
         data.targets.forEach(target => {
 
