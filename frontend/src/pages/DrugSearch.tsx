@@ -89,6 +89,10 @@ function BioCalc() {
     const classes = useStyles();
 
     const submitFn = async (arr: string[]) => {
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim();
+        }
+        console.log(arr)
         const payload = {
             search: arr
         };
