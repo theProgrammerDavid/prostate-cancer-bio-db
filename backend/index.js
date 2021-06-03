@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const signupRouter = require('./routers/signup.router');
 const loginRouter = require('./routers/login.router');
 const setupRouter = require('./setup/setup.router');
-const mainRouter = require('./routers/main.router');
+const userRouter = require('./routers/main.router');
 const db = require('./models/db');
 
 const port = process.env.PORT || 3000;
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/setup', setupRouter);
-app.use('/user', mainRouter);
+app.use('/user', userRouter);
 //let force = process.env.DEBUG ? true : false;
 // console.log(force)
 db.sequelize.sync({ force: false }).then(async () => {
