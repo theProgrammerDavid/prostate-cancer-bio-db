@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
         drug: {
             type: Sequelize.STRING
         },
-        type: {
+        gene: {
             type: Sequelize.STRING,
         }
     });

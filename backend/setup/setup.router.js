@@ -35,11 +35,10 @@ router.get('/genes', (req, res) => {
         geneList.forEach(gene => {
             let count = 0;
             let uids = gene.result.uids;
-            for (let i=0;i<uids.length;i++) {
+            for (let i = 0; i < uids.length; i++) {
                 let uid = uids[i];
                 //console.log(typeof uid)
-                if (gene.result[uid] != undefined)
-                {
+                if (gene.result[uid] != undefined) {
                     count++;
                     Gene.create({
                         uid: uid,
@@ -68,17 +67,27 @@ router.get('/genes', (req, res) => {
         res.send(e);
     }
 });
-
-router.get('/', async (req, res) => {
+router.get('/gd', (req, res) => {
     try {
-
         gd.forEach(g => {
+            console.log(g);
             Interaction.create({
                 // yes i know that they're reversed
                 gene: g.Drug,
                 drug: g.Type
             })
-        })
+        });
+        res.send('ok');
+    }
+    catch (e) {
+        console.log(e)
+        res.send(e);
+    }
+})
+router.get('/', async (req, res) => {
+    try {
+
+
         // console.log(data.targets.length)
         data.targets.forEach(target => {
 

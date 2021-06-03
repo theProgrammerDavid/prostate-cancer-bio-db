@@ -57,7 +57,7 @@ function Dash() {
                         className={classes.paper}
                         onClick={(e) => dispatch(setUserCurrentPage('search'))}
                     >
-                        Protein Search
+                        Drug Search
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>

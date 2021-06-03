@@ -32,7 +32,7 @@ import Dash from 'pages/Dash';
 import RawQuery from 'pages/RawQuery';
 import BioCalc from 'pages/BioCalc';
 import SubmitProt from 'pages/SubmitProt';
-import ProtSearch from 'pages/ProteinSearch';
+import ProtSearch from 'pages/DrugSearch';
 import BioStats from 'pages/BioStats';
 
 import HomePageCarousel from 'components/HomePageCarousel';
@@ -145,10 +145,10 @@ export default function MiniDrawer() {
         </ListItem>
 
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('search')) }}>
-          <Tooltip title="Protein Search">
+          <Tooltip title="Drug Search">
             <ListItemIcon> <SearchIcon /></ListItemIcon>
           </Tooltip>
-          <ListItemText primary="Protein Search"></ListItemText>
+          <ListItemText primary="Drug Search"></ListItemText>
         </ListItem>
 
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('rawQuery')) }}>
