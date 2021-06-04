@@ -10,6 +10,7 @@ const signupRouter = require('./routers/signup.router');
 const loginRouter = require('./routers/login.router');
 const setupRouter = require('./setup/setup.router');
 const userRouter = require('./routers/main.router');
+const downloadRouter = require('./routers/download.router');
 const db = require('./models/db');
 
 const port = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/setup', setupRouter);
 app.use('/user', userRouter);
+app.use('/download', downloadRouter);
 //let force = process.env.DEBUG ? true : false;
 // console.log(force)
 db.sequelize.sync({ force: false }).then(async () => {

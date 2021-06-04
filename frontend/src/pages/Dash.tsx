@@ -1,13 +1,14 @@
 import React from 'react'
 import {
-    Typography, Grid, Paper
+    Grid, Paper
 
 } from '@material-ui/core'
 import { setUserCurrentPage } from 'features/counter/counterSlice'
 import { useSelector, useDispatch } from 'react-redux';
-import { Button} from '@material-ui/core';
+import { Button, Typography, Link } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
+const baseLink: string = process.env.REACT_APP_BASE_URL || 'http://localhost:4000';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,20 +37,20 @@ function Dash() {
             <br />
             <br />
             <Grid container spacing={3}>
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                     <Paper
                         className={classes.paper}
                         onClick={(e) => dispatch(setUserCurrentPage('bioCalc'))}
                     >
                         Bioactivity Calculator
                     </Paper>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={6}>
                     <Paper
                         className={classes.paper}
                         onClick={(e) => dispatch(setUserCurrentPage('submitProt'))}
                     >
-                        Submit Protein
+                        Submit Gene Seq
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
@@ -75,6 +76,37 @@ function Dash() {
                     >
                         Biological Statistics
                     </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Typography className={classes.root}>
+                            <Link target="_blank" href={`${baseLink}/download/inhibitoryDrugs`} >
+                                Download Inhibitory Drugs
+                         </Link>
+                        </Typography>
+                    </Paper>
+
+                </Grid>
+
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Typography className={classes.root}>
+                            <Link target="_blank" href={`${baseLink}/download/geneSeq`} >
+                                Download Gene Sequences
+                            </Link>
+                        </Typography>
+                    </Paper>
+
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Typography className={classes.root}>
+                            <Link target="_blank" href={`${baseLink}/download/geneDrugMap`} >
+                                Download Gene Drug Mapping
+                            </Link>
+                        </Typography>
+                    </Paper>
+
                 </Grid>
             </Grid>
         </div>

@@ -130,18 +130,18 @@ export default function MiniDrawer() {
           <ListItemText primary="Dashboard"></ListItemText>
         </ListItem>
 
-        <ListItem button onClick={e => { dispatch(setUserCurrentPage('bioCalc')) }}>
+        {/* <ListItem button onClick={e => { dispatch(setUserCurrentPage('bioCalc')) }}>
           <Tooltip title="Bioactivity Calculator">
             <ListItemIcon> <FingerprintIcon /></ListItemIcon>
           </Tooltip>
           <ListItemText primary="Bioactivity Calculator"></ListItemText>
-        </ListItem>
+        </ListItem> */}
 
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('submitProt')) }}>
-          <Tooltip title="Submit protein">
+          <Tooltip title="Submit Gene">
             <ListItemIcon> <PublishIcon /></ListItemIcon>
           </Tooltip>
-          <ListItemText primary="Submit protein"></ListItemText>
+          <ListItemText primary="Submit Gene Sequence"></ListItemText>
         </ListItem>
 
         <ListItem button onClick={e => { dispatch(setUserCurrentPage('search')) }}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import {
-    Typography, Grid, Paper
+    Typography, Grid, Paper,
+    TextareaAutosize
 
 } from '@material-ui/core'
 import { setUserCurrentPage } from 'features/counter/counterSlice'
@@ -13,7 +14,7 @@ function BioCalc() {
     return (
         <div>
             <Typography variant="h2">
-                Submit Protein
+                Submit Gene Sequence
             </Typography>
 
             <Typography variant="subtitle1">
